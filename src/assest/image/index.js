@@ -1,0 +1,1 @@
+export { default as meWhats } from "../assets/image/meWhats.png";
