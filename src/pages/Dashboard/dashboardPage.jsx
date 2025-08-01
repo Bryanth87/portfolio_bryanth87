@@ -101,37 +101,41 @@ const DashboardPage = ({ onEnterPortfolio }) => {
     minHeight: "100vh",
     textAlign: "center",
     color: "white",
-    padding: "1rem",
+    padding: "2rem 1rem",
     transform: isAnimated ? "translateY(0)" : "translateY(30px)",
     opacity: isAnimated ? 1 : 0,
     transition: "all 1s ease-out"
   };
 
   const titleStyle = {
-    fontSize: "clamp(2rem, 6vw, 3.5rem)",
+    fontSize: "3rem",
     fontWeight: "bold",
     marginBottom: "1rem",
     background: "linear-gradient(45deg, #06b6d4, #a855f7, #ec4899)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
-    textShadow: "2px 2px 4px rgba(0,0,0,0.3)"
+    textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+    "@media (max-width: 768px)": {
+      fontSize: "2rem"
+    }
   };
 
   const subtitleStyle = {
-    fontSize: "clamp(1.25rem, 4vw, 2rem)",
+    fontSize: "1.5rem",
     fontWeight: "bold",
     marginBottom: "1.5rem",
     color: "white"
   };
 
   const descriptionStyle = {
-    fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+    fontSize: "1.1rem",
     color: "#d1d5db",
     lineHeight: "1.8",
-    maxWidth: "48rem",
-    margin: "0 auto 3rem auto",
-    padding: "0 1rem"
+    maxWidth: "42rem",
+    margin: "0 auto 2.5rem auto",
+    padding: "0 1rem",
+    textAlign: "center"
   };
 
   const timeContainerStyle = {
@@ -139,25 +143,27 @@ const DashboardPage = ({ onEnterPortfolio }) => {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: "1rem",
-    padding: "1rem",
+    gap: "1.5rem",
+    padding: "1rem 1.5rem",
     backgroundColor: "rgba(255,255,255,0.1)",
     backdropFilter: "blur(16px)",
     borderRadius: "2rem",
     border: "1px solid rgba(255,255,255,0.2)",
-    marginBottom: "3rem",
+    marginBottom: "2.5rem",
     flexWrap: "wrap",
-    maxWidth: "90%"
+    maxWidth: "fit-content",
+    margin: "0 auto 2.5rem auto"
   };
 
   const statsGridStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-    gap: "1rem",
-    marginBottom: "3rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+    gap: "1.2rem",
+    marginBottom: "2.5rem",
     width: "100%",
-    maxWidth: "600px",
-    padding: "0 1rem"
+    maxWidth: "450px",
+    padding: "0 1rem",
+    margin: "0 auto 2.5rem auto"
   };
 
   const statBoxStyle = {
@@ -179,29 +185,29 @@ const DashboardPage = ({ onEnterPortfolio }) => {
     display: "inline-flex",
     alignItems: "center",
     gap: "0.75rem",
-    padding: "1rem 2rem",
+    padding: "1rem 2.5rem",
     background: "linear-gradient(45deg, #06b6d4, #8b5cf6)",
     color: "white",
     border: "none",
     borderRadius: "9999px",
-    fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
+    fontSize: "1.1rem",
     fontWeight: "bold",
     cursor: "pointer",
     transition: "all 0.3s ease",
-    marginBottom: "3rem",
+    marginBottom: "2.5rem",
     overflow: "hidden",
-    minWidth: "200px",
-    justifyContent: "center"
+    margin: "0 auto 2.5rem auto"
   };
 
   const infoContainerStyle = {
-    padding: "1.5rem",
+    padding: "2rem",
     backgroundColor: "rgba(255,255,255,0.1)",
     backdropFilter: "blur(16px)",
     borderRadius: "1.5rem",
     border: "1px solid rgba(255,255,255,0.2)",
-    maxWidth: "90%",
-    width: "100%"
+    maxWidth: "600px",
+    width: "100%",
+    margin: "0 auto"
   };
 
   const featuresGridStyle = {
@@ -235,6 +241,25 @@ const DashboardPage = ({ onEnterPortfolio }) => {
 
   return (
     <section id="dashboard" style={dashboardStyle}>
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 768px) {
+          #dashboard h1 { font-size: 2rem !important; }
+          #dashboard h2 { font-size: 1.2rem !important; }
+          #dashboard p { font-size: 0.95rem !important; }
+          .time-container { flex-direction: column !important; gap: 0.8rem !important; padding: 1rem !important; }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; max-width: 320px !important; gap: 1rem !important; }
+          .features-grid { grid-template-columns: 1fr !important; }
+          .info-container { padding: 1.5rem !important; margin: 0 1rem !important; max-width: calc(100% - 2rem) !important; }
+        }
+        @media (max-width: 480px) {
+          #dashboard h1 { font-size: 1.8rem !important; }
+          #dashboard h2 { font-size: 1.1rem !important; }
+          .stats-grid { grid-template-columns: 1fr !important; max-width: 220px !important; }
+          .button-main { padding: 0.9rem 2rem !important; font-size: 1rem !important; }
+          .time-container span { font-size: 0.9rem !important; }
+          .info-container { padding: 1rem !important; }
+        }
+      `}} />
       {}
       <div style={backgroundEffectsStyle}></div>
 
@@ -261,9 +286,9 @@ const DashboardPage = ({ onEnterPortfolio }) => {
 
       {}
       <div style={containerStyle}>
-        <div style={{ maxWidth: "64rem", margin: "0 auto" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", width: "100%" }}>
           {}
-          <div style={{ marginBottom: "2rem" }}>
+          <div style={{ marginBottom: "2.5rem" }}>
             <h1 style={titleStyle}>
               {getGreeting()}
             </h1>
@@ -275,16 +300,17 @@ const DashboardPage = ({ onEnterPortfolio }) => {
           </div>
 
           {}
-          <div style={timeContainerStyle}>
+                    {/* Reloj y fecha */}
+          <div className="time-container" style={timeContainerStyle}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#d1d5db" }}>
               <span style={{ fontSize: "1.25rem" }}>📅</span>
-              <span style={{ fontSize: "clamp(0.9rem, 2vw, 1.125rem)" }}>{formatDate(currentTime)}</span>
+              <span style={{ fontSize: "1rem" }}>{formatDate(currentTime)}</span>
             </div>
             <div style={{ width: "1px", height: "2rem", backgroundColor: "rgba(255,255,255,0.2)" }}></div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ fontSize: "1.25rem", color: "#06b6d4" }}>🕐</span>
               <span style={{ 
-                fontSize: "clamp(1rem, 2.5vw, 1.25rem)", 
+                fontSize: "1.1rem", 
                 fontFamily: "monospace", 
                 fontWeight: "bold", 
                 color: "white" 
@@ -295,7 +321,7 @@ const DashboardPage = ({ onEnterPortfolio }) => {
           </div>
 
           {}
-          <div style={statsGridStyle}>
+          <div className="stats-grid" style={statsGridStyle}>
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -312,9 +338,9 @@ const DashboardPage = ({ onEnterPortfolio }) => {
                 }}
               >
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
-                  <span style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)" }}>{stat.icon}</span>
-                  <div style={{ fontSize: "clamp(1.25rem, 4vw, 1.875rem)", fontWeight: "bold", color: "white" }}>{stat.number}</div>
-                  <div style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)", color: "#d1d5db", textAlign: "center" }}>{stat.label}</div>
+                  <span style={{ fontSize: "1.5rem" }}>{stat.icon}</span>
+                  <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: "white" }}>{stat.number}</div>
+                  <div style={{ fontSize: "0.8rem", color: "#d1d5db", textAlign: "center" }}>{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -322,6 +348,7 @@ const DashboardPage = ({ onEnterPortfolio }) => {
 
           {}
           <button
+            className="button-main"
             onClick={handleRedirectToMain}
             style={buttonStyle}
             onMouseOver={(e) => {
@@ -338,13 +365,13 @@ const DashboardPage = ({ onEnterPortfolio }) => {
           </button>
 
           {}
-          <div style={infoContainerStyle}>
+          <div className="info-container" style={infoContainerStyle}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
-              <span style={{ fontSize: "clamp(1.25rem, 3vw, 1.5rem)" }}>✨</span>
-              <h3 style={{ fontSize: "clamp(1.25rem, 3vw, 1.5rem)", fontWeight: "bold", color: "white" }}>¿Qué encontrarás en mi portafolio?</h3>
+              <span style={{ fontSize: "1.5rem" }}>✨</span>
+              <h3 style={{ fontSize: "1.3rem", fontWeight: "bold", color: "white" }}>¿Qué encontrarás en mi portafolio?</h3>
             </div>
 
-            <div style={featuresGridStyle}>
+            <div className="features-grid" style={featuresGridStyle}>
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -359,9 +386,9 @@ const DashboardPage = ({ onEnterPortfolio }) => {
                   }}
                 >
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "0.75rem" }}>
-                    <span style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)" }}>{feature.icon}</span>
-                    <div style={{ fontWeight: "600", color: "white", fontSize: "clamp(1rem, 2.5vw, 1.125rem)" }}>{feature.title}</div>
-                    <div style={{ fontSize: "clamp(0.8rem, 2vw, 0.875rem)", color: "#9ca3af" }}>{feature.description}</div>
+                    <span style={{ fontSize: "1.8rem" }}>{feature.icon}</span>
+                    <div style={{ fontWeight: "600", color: "white", fontSize: "1rem" }}>{feature.title}</div>
+                    <div style={{ fontSize: "0.85rem", color: "#9ca3af" }}>{feature.description}</div>
                   </div>
                 </div>
               ))}
@@ -406,53 +433,6 @@ const DashboardPage = ({ onEnterPortfolio }) => {
           }
           60% { 
             transform: translateX(-50%) translateY(-5px); 
-          }
-        }
-        
-        @media (max-width: 768px) {
-          h1 { 
-            font-size: 2.5rem !important; 
-          }
-          h2 { 
-            font-size: 1.5rem !important; 
-          }
-          p { 
-            font-size: 1rem !important; 
-          }
-        }
-        
-        @media (max-width: 640px) {
-          .time-container {
-            flex-direction: column !important;
-            gap: 0.5rem !important;
-            padding: 0.75rem !important;
-          }
-          
-          .stats-grid {
-            grid-template-columns: 1fr !important;
-            gap: 0.75rem !important;
-            max-width: 300px !important;
-          }
-          
-          .features-grid {
-            grid-template-columns: 1fr !important;
-          }
-          
-          .info-container {
-            padding: 1rem !important;
-            margin: 0 0.5rem !important;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .dashboard-container {
-            padding: 0.5rem !important;
-          }
-          
-          .button-main {
-            padding: 0.75rem 1.5rem !important;
-            min-width: 150px !important;
-            font-size: 1rem !important;
           }
         }
       `}</style>
